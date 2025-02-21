@@ -10,7 +10,7 @@ file_read = spark.read.option("header", True).option("inferSchema", True).csv(".
 
 # Apply DataFrame transformations
 filtered_df = file_read.filter(file_read.reviewsCount > 2)
-filtered_df.select("name", "searchString" ,"city", "totalScore", "reviewsCount").show()
+filtered_df.select("name", "searchString1" ,"city", "totalScore", "reviewsCount").show()
 
 
 # Stop Spark session
