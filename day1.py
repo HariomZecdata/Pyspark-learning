@@ -18,7 +18,13 @@ filtered_df = file_read.filter(file_read.reviewsCount > 2)
 # Repartition 
 filtered_df = filtered_df.repartition(5) # repartitons
 
-# Print number of partitions
+print("***********************before", spark.conf.get("spark.sql.autoBroadcastJoinThreshold"))
+
+# Set the broadcast join threshold to 20MB
+spark.conf.set("spark.sql.autoBroadcastJoinThreshold", 20000000)
+
+print("***********************after", spark.conf.get("spark.sql.autoBroadcastJoinThreshold"))
+
 print("Number of partitions in repartions:", filtered_df.rdd.getNumPartitions())
 
 # Add partition ID column and count records per partition
